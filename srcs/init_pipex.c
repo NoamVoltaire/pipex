@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:23:33 by noam              #+#    #+#             */
-/*   Updated: 2024/04/17 18:59:56 by noam             ###   ########.fr       */
+/*   Updated: 2024/04/18 14:54:06 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,11 @@ void	check_fd(char *file, int input)
 t_pipex	*init_pipex(char **args, char **envp)
 {
 	t_pipex	*pipex;
-	int		fd_in_out[2];
-	char	**cmds[4];
+	int		*fd_in_out;
+	char	***cmds;
 
+	fd_in_out = malloc(sizeof(int) * 2);
+	cmds = malloc(sizeof(char **) * 4);
 	check_fd(args[1], 1);
 	fd_in_out[0] = get_fds(args[1], 1);
 	cmds[0] = ft_split(args[2], ' ', 0);
@@ -112,16 +114,38 @@ t_pipex	*init_pipex(char **args, char **envp)
 	cmds[2] = ft_split(args[3], ' ', 0);
 	if (fd_in_out[1] != -1)
 		cmds[3] = ft_split(cmd_dir(get_path(envp), cmds[2][0]), ' ', 1);
+
+	if (fd_in_out[0] == -1 || fd_in_out[1] == -1 || !cmds[1] || !cmds[3])
+		exit (1);
+	
 	pipex = malloc(sizeof(t_pipex));
 	if (!pipex)
 		return (NULL);
 	pipex->fds = fd_in_out;
 	pipex->cmd = cmds;
+	// printpipex(pipex);
 	return (pipex);
 }
 
 /* ************************************************************************** **
 
+memo:
+
+	typedef struct s_pipex
+	{
+		int			*fds;
+		char		***cmd;
+	}	t_pipex;
+
+	cmds[0] = cmds
+	cmds[1] = cmd_path
+	cmds[2] = cmds
+	cmds[3] = cmd_path
+
+	if fd KO or cmd KO
+	init_pipex gives -1 in fds
+	if fd KO or cmd KO, cmds[1] and cmds[3] are NULL (no cmds[1][0]etc)
+	--------------------------------------------------------------------
 tests
 	// printf ("fd opended\n fd[0] = %d\n", fd_in_out[0]);
 	// printf ("cmd = %s\n",cmds[0][0]);
