@@ -53,3 +53,17 @@ dkms.conf
 
 #other
 .vscode/
+NON
+NOT
+pipex_tester/
+test/
+tester_pipex.sh
+testin
+testout
+testouttwo
+testrrr
+wrongname
+zombie_test1
+zombie_test2
+zombie_test3
+zombie_test4
