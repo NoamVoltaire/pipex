@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:23:33 by noam              #+#    #+#             */
-/*   Updated: 2024/04/18 14:54:06 by noam             ###   ########.fr       */
+/*   Updated: 2024/04/19 01:51:27 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,18 @@ t_pipex	*init_pipex(char **args, char **envp)
 	check_fd(args[1], 1);
 	fd_in_out[0] = get_fds(args[1], 1);
 	cmds[0] = ft_split(args[2], ' ', 0);
-	if (fd_in_out[0] != -1)
+	// if (fd_in_out[0] != -1)
 		cmds[1] = ft_split(cmd_dir(get_path(envp), cmds[0][0]), ' ', 1);
-	check_fd(args[4], 0);
+	// check_fd(args[4], 0);
 	fd_in_out[1] = get_fds(args[4], 0);
 	cmds[2] = ft_split(args[3], ' ', 0);
-	if (fd_in_out[1] != -1)
+	// if (fd_in_out[1] != -1)
 		cmds[3] = ft_split(cmd_dir(get_path(envp), cmds[2][0]), ' ', 1);
 
-	if (fd_in_out[0] == -1 || fd_in_out[1] == -1 || !cmds[1] || !cmds[3])
-		exit (1);
+	// if (fd_in_out[0] == -1 || fd_in_out[1] == -1)
+	// 	exit (0);
+	// if (!cmds[1] || !cmds[3])
+	// 	exit (1);
 	
 	pipex = malloc(sizeof(t_pipex));
 	if (!pipex)

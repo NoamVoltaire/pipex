@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 20:57:40 by noam              #+#    #+#             */
-/*   Updated: 2024/04/17 18:53:16 by noam             ###   ########.fr       */
+/*   Updated: 2024/04/18 14:29:50 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 
 # include "../ft_printf_fd/ft_printf_fd.h"
 
+
 typedef struct s_pipex
 {
 	int			*fds;
 	char		***cmd;
 }	t_pipex;
+void printpipex(t_pipex *pipex);
 
 char	**ft_split(char *s, char c, int free_s);
 size_t	ft_strlen(const char *s);

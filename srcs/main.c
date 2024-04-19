@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:21:58 by noam              #+#    #+#             */
-/*   Updated: 2024/04/19 00:19:15 by noam             ###   ########.fr       */
+/*   Updated: 2024/04/19 02:15:57 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void fork_process(t_pipex *pipex, char **envp)
 	waitpid(pid, NULL, 0);
 	close(pipefd[1]);
 	
-	printf("child 1 done\n");
+	// printf("child 1 done\n");
 	// printf("pipefd = %s\n", (read(pipefd[0], str, 1000) > 0) ? "yes" : "no");
 	// printf("pipe = %s\n", str);
-	printf("cmds[2][1] = %s\n", pipex->cmd[2][1]);
+	// printf("cmds[2][1] = %s\n", pipex->cmd[2][1]);
 		// close(pipex->fds[0]);
 		
 	dip = fork();
@@ -48,9 +48,9 @@ void fork_process(t_pipex *pipex, char **envp)
 	if (dip == 0)
 	{
 		// sleep(2);
+		close(pipefd[1]);
 		dup2(pipefd[0], 0);
 		dup2(pipex->fds[1], 1);
-		// close(pipefd[0]);
 		// close(pipex->fds[0]);
 		// close(pipex->fds[1]);
 		// ft_printf_fd(0, "testout\n");
@@ -59,7 +59,7 @@ void fork_process(t_pipex *pipex, char **envp)
 	}
 	waitpid(dip, NULL, 0);
 	// close(pipex->fds[1]);
-	printf("child 2\n");
+	// printf("child 2\n");
 	// close(pipefd[1]);
 	close(pipefd[0]);
 }
@@ -88,15 +88,18 @@ int	main(int ac, char **av, char **envp)
 	pipex = NULL;
 	if (ac != 5)
 	{
-		perror("Error");
-		exit(1);
+		// perror("Error");
+		write(1, "\n", 1);
+		return 0;
 	}
 	pipex = init_pipex(av, envp);
-	printpipex(pipex);
+	// printpipex(pipex);
 
 	fork_process(pipex, envp);
-	
-	// free(pipex);
-	ft_printf_fd(1, "cool\n");
+if (pipex->cmd[3] == NULL)
+	return 127;
+if (pipex->fds[0] == -1 || pipex->fds[1] == -1)
+	return 0;	// free(pipex);
+	// ft_printf_fd(1, "cool\n");
 }
 
