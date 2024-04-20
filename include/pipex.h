@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 20:57:40 by noam              #+#    #+#             */
-/*   Updated: 2024/04/18 14:29:50 by noam             ###   ########.fr       */
+/*   Updated: 2024/04/20 19:52:59 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
-void	free_array(char **array);
 
 t_pipex	*init_pipex(char **args, char **envp);
+void	free_pipex(t_pipex *pipex);
+void	free_array(char **array);
+int		arrs_len(void ***array);
+
 
 #endif

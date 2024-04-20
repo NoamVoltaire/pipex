@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:23:33 by noam              #+#    #+#             */
-/*   Updated: 2024/04/19 01:51:27 by noam             ###   ########.fr       */
+/*   Updated: 2024/04/19 14:12:08 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ memo:
 
 	if fd KO or cmd KO
 	init_pipex gives -1 in fds
-	if fd KO or cmd KO, cmds[1] and cmds[3] are NULL (no cmds[1][0]etc)
+	if cmd KO, cmds[1] and cmds[3] are NULL (no cmds[1][0]etc)
 	--------------------------------------------------------------------
 tests
 	// printf ("fd opended\n fd[0] = %d\n", fd_in_out[0]);

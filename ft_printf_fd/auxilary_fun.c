@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:53:34 by nvoltair          #+#    #+#             */
-/*   Updated: 2024/04/16 14:45:16 by noam             ###   ########.fr       */
+/*   Updated: 2024/04/20 19:22:52 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_putstr_fd(char *s, int fd)
 
 	i = 0;
 	if (s == NULL)
-		return (ft_putstr_fd("(null)", 1));
+		return (ft_putstr_fd("(null)", fd));
 	while (s[i])
 	{
 		write(fd, &s[i], 1);
