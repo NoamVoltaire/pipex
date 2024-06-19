@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:44:08 by noam              #+#    #+#             */
-/*   Updated: 2024/04/20 16:09:50 by noam             ###   ########.fr       */
+/*   Updated: 2024/06/19 18:02:08 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	**ft_split(char *str_words, char sep, int free_str)
 		i++;
 		s = advance_to_next_word(s, sep);
 	}
+	arr[i] = NULL;
 	if (free_str)
 		free(str_words);
 	return (arr);

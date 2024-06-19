@@ -6,7 +6,7 @@
 /*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:23:33 by noam              #+#    #+#             */
-/*   Updated: 2024/04/19 14:12:08 by noam             ###   ########.fr       */
+/*   Updated: 2024/06/19 18:09:25 by noam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int	get_fds(char *arg, int input)
 	int	ret;
 
 	if (input)
-		ret = open(arg, O_RDONLY, 0777);
+		ret = open(arg, O_RDONLY, 0664);
 	else if (!input)
-		ret = open(arg, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		ret = open(arg, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	return (ret);
 }
 
