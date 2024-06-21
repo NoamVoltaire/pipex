@@ -6,7 +6,7 @@
 /*   By: nvoltair <nvoltair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:23:33 by noam              #+#    #+#             */
-/*   Updated: 2024/06/21 15:50:19 by nvoltair         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:32:27 by nvoltair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*cmd_dir(char **path, char *cmd_name)
 	{
 		tmp = ft_strjoin(path[i], "/");
 		cmd_path = ft_strjoin(tmp, cmd_name);
-		if (access(cmd_path, F_OK) != -1)
+		if (cmd_path && access(cmd_path, F_OK) != -1)
 		{
 			if (access(cmd_path, X_OK) == -1)
 				ft_printf_fd(2, "pipex: permission denied: %s\n", cmd_path);

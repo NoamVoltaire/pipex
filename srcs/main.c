@@ -6,7 +6,7 @@
 /*   By: nvoltair <nvoltair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:21:58 by noam              #+#    #+#             */
-/*   Updated: 2024/06/21 15:14:31 by nvoltair         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:46:37 by nvoltair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int fork_process(t_pipex *pipex, char **envp)
 		close(pipefd[0]);
 		dup2(pipex->fds[0], 0);
 		// close(pipefd[1]);
-		execve(pipex->cmd[1][0], pipex->cmd[0], envp);
+		if (pipex->cmd[1])
+			execve(pipex->cmd[1][0], pipex->cmd[0], envp);
 		exit(1);
 	}
 	waitpid(pid, NULL, 0);
@@ -64,7 +65,8 @@ int fork_process(t_pipex *pipex, char **envp)
 		// close(pipex->fds[0]);
 		// close(pipex->fds[1]);
 		// ft_printf_fd(0, "testout\n");
-		execve(pipex->cmd[3][0], pipex->cmd[2], envp);
+		if (pipex->cmd[3])
+			execve(pipex->cmd[3][0], pipex->cmd[2], envp);
 		exit(1);
 	}
 	waitpid(dip, &status, 0);
