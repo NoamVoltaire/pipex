@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nvoltair <nvoltair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 13:54:15 by nvoltair          #+#    #+#             */
-/*   Updated: 2024/04/16 14:59:48 by noam             ###   ########.fr       */
+/*   Updated: 2024/06/21 15:23:08 by nvoltair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	writestuff(int fd, unsigned long long nbr, char *base)
 		base++;
 }
 
-int	ft_putnbr_base(int fd, unsigned int nbr)
+int	ft_putnbr_base(int fd, int nbr)
 {
 	int		len;
 	char	*hum;
@@ -46,7 +46,7 @@ int	ft_putnbr_base(int fd, unsigned int nbr)
 	return (len);
 }
 
-int	ft_putnbr_base_cap(int fd, unsigned int nbr)
+int	ft_putnbr_base_cap(int fd, int nbr)
 {
 	int		len;
 	char	*hum;

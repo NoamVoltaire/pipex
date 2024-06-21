@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   auxilary_fun.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noam <noam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: nvoltair <nvoltair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:53:34 by nvoltair          #+#    #+#             */
-/*   Updated: 2024/04/20 19:22:52 by noam             ###   ########.fr       */
+/*   Updated: 2024/06/21 15:25:05 by nvoltair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_putnbr(int fd, long int n)
 	}
 }
 
-void	ft_putnbr_fd(int fd, unsigned int n)
+void	ft_putnbr_fd(int fd, int n)
 {
 	if (n >= 0 && n <= 9)
 		ft_putchar_fd(fd, '0' + (n));
