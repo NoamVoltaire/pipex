@@ -6,7 +6,7 @@
 /*   By: nvoltair <nvoltair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:23:33 by noam              #+#    #+#             */
-/*   Updated: 2024/06/21 16:32:27 by nvoltair         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:31:10 by nvoltair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	**get_path(char **envp)
 	char	**path;
 
 	i = 0;
+	if (!envp)
+		return (NULL);
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
@@ -104,6 +106,8 @@ t_pipex	*init_pipex(char **args, char **envp)
 
 	fd_in_out = malloc(sizeof(int) * 2);
 	cmds = malloc(sizeof(char **) * 4);
+	if (!cmds)
+		return (NULL);
 	check_fd(args[1], 1);
 	fd_in_out[0] = get_fds(args[1], 1);
 	cmds[0] = ft_split(args[2], ' ', 0);

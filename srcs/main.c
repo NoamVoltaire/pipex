@@ -6,7 +6,7 @@
 /*   By: nvoltair <nvoltair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:21:58 by noam              #+#    #+#             */
-/*   Updated: 2024/06/21 16:46:37 by nvoltair         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:56:34 by nvoltair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,22 @@ int fork_process(t_pipex *pipex, char **envp)
 	{
 		if (pipex->fds[0] == -1)
 		exit(1);
-		dup2(pipefd[1], 1);
 		close(pipefd[0]);
+		dup2(pipefd[1], 1);
+		close(pipefd[1]);
 		dup2(pipex->fds[0], 0);
+		close(pipex->fds[0]);
+		
 		// close(pipefd[1]);
 		if (pipex->cmd[1])
 			execve(pipex->cmd[1][0], pipex->cmd[0], envp);
-		exit(1);
+		return (1);
 	}
-	waitpid(pid, NULL, 0);
+	// waitpid(pid, NULL, 0);
+	dip = fork();
+	close(pipefd[1]);
 	// printf("pipex->fds[0] = %d\n", pipex->fds[0]);
 	// printf("were here\n");
-	close(pipefd[1]);
 	
 	// printf("child 1 done\n");
 	// printf("pipefd = %s\n", (read(pipefd[0], str, 1000) > 0) ? "yes" : "no");
@@ -51,7 +55,6 @@ int fork_process(t_pipex *pipex, char **envp)
 	// printf("cmds[2][1] = %s\n", pipex->cmd[2][1]);
 		// close(pipex->fds[0]);
 		
-	dip = fork();
 	if (dip < 0)
 		return (-1);
 	if (dip == 0)
@@ -59,23 +62,27 @@ int fork_process(t_pipex *pipex, char **envp)
 		if (pipex->fds[1] == -1)
 		exit(1);
 		// sleep(2);
-		close(pipefd[1]);
+		// close(pipefd[1]);
 		dup2(pipefd[0], 0);
+		close(pipefd[0]);
 		dup2(pipex->fds[1], 1);
+		close(pipex->fds[1]);
 		// close(pipex->fds[0]);
-		// close(pipex->fds[1]);
 		// ft_printf_fd(0, "testout\n");
 		if (pipex->cmd[3])
 			execve(pipex->cmd[3][0], pipex->cmd[2], envp);
-		exit(1);
+		return (1);
 	}
+
+	// close(pipefd[1]);
+	close(pipefd[0]);
+	waitpid(pid, NULL, 0);
 	waitpid(dip, &status, 0);
 	if (WIFEXITED(status)) 
 		exit_status = WEXITSTATUS(status);
 	// close(pipex->fds[1]);
 	// printf("child 2\n");
 	// close(pipefd[1]);
-	close(pipefd[0]);
 	return (exit_status);
 }
 
